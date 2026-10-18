@@ -13,6 +13,7 @@ from benchmark_config import (
     TEMPERATURES,
     TOP_K_VALUES,
     TOP_P_VALUES,
+    BASELINE,
     SEEDS,
     MAX_TOKENS,
     OUTPUT_CSV,
@@ -26,37 +27,38 @@ def load_prompts(path):
 
 
 def make_conditions():
-    """Create the recommended one-factor-at-a-time experiment."""
+    """One-factor-at-a-time: vary one setting, hold the other two at baseline."""
     conditions = []
 
     for t in TEMPERATURES:
         conditions.append({
             "experiment": "temperature",
             "temperature": t,
-            "top_k": 40,
-            "top_p": 0.9,
+            "top_k": BASELINE["top_k"],
+            "top_p": BASELINE["top_p"],
         })
 
     for k in TOP_K_VALUES:
         conditions.append({
             "experiment": "top_k",
-            "temperature": 0.7,
+            "temperature": BASELINE["temperature"],
             "top_k": k,
-            "top_p": 0.9,
+            "top_p": BASELINE["top_p"],
         })
 
     for p in TOP_P_VALUES:
         conditions.append({
             "experiment": "top_p",
-            "temperature": 0.7,
-            "top_k": 40,
+            "temperature": BASELINE["temperature"],
+            "top_k": BASELINE["top_k"],
             "top_p": p,
         })
 
-    # Remove duplicate baseline (0.7, 40, 0.9), keeping its first occurrence.
+    # The baseline point appears in all three sweeps. Keep each sweep's own
+    # copy so every curve is complete, but drop exact duplicates within a sweep.
     unique = {}
     for c in conditions:
-        key = (c["temperature"], c["top_k"], c["top_p"])
+        key = (c["experiment"], c["temperature"], c["top_k"], c["top_p"])
         unique[key] = c
 
     return list(unique.values())
@@ -97,6 +99,7 @@ def run_one(model, prompt_record, condition, seed):
         "prompt_id": prompt_record["id"],
         "category": prompt_record["category"],
         "prompt": prompt_record["prompt"],
+        "difficulty": prompt_record.get("difficulty", ""),
         "experiment": condition["experiment"],
         "temperature": condition["temperature"],
         "top_k": condition["top_k"],
@@ -110,6 +113,10 @@ def run_one(model, prompt_record, condition, seed):
         "response_words": len(text.split()),
         "acceptable_answers": json.dumps(
             prompt_record.get("acceptable_answers", []),
+            ensure_ascii=False,
+        ),
+        "required_keys": json.dumps(
+            prompt_record.get("required_keys", []),
             ensure_ascii=False,
         ),
     }
@@ -166,8 +173,12 @@ def main():
                             "tokens_per_second": None,
                             "response_chars": 0,
                             "response_words": 0,
+                            "difficulty": prompt_record.get("difficulty", ""),
                             "acceptable_answers": json.dumps(
                                 prompt_record.get("acceptable_answers", [])
+                            ),
+                            "required_keys": json.dumps(
+                                prompt_record.get("required_keys", [])
                             ),
                             "error": repr(exc),
                         })

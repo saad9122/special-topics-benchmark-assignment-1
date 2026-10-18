@@ -1,2 +1,2 @@
-﻿model,mean_pairwise_similarity,mean_response_words,mean_latency_seconds,mean_tokens_per_second,factual_accuracy,structural_compliance
-llama3.2:3b,0.08247666355745707,22.342857142857145,1.309465886857028,25.45898770178121,1.0,0.9523809523809524
+﻿model,similarity,identical_rate,factual_accuracy,factual_wrong_rate,hallucination_rate,structural_compliance,mean_response_words,mean_latency_seconds,mean_tokens_per_second
+llama3.2:3b,0.6749861561625721,0.5017094017094017,0.9487179487179488,0.0017094017094017094,0.10384615384615385,0.9897435897435898,31.0017094017094,1.9320184787184733,25.101521434033486

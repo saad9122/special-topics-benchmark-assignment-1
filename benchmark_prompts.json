@@ -1,62 +1,174 @@
 [
   {
-    "id": "fact_01",
+    "id": "fact_easy_01",
     "category": "factual",
-    "prompt": "Who wrote the novel Pride and Prejudice?",
-    "acceptable_answers": ["Jane Austen"]
+    "difficulty": "easy",
+    "prompt": "Answer in one short sentence. What is the capital city of Japan?",
+    "acceptable_answers": [
+      "Tokyo"
+    ]
   },
   {
-    "id": "fact_02",
+    "id": "fact_easy_02",
     "category": "factual",
-    "prompt": "What is the capital city of Japan?",
-    "acceptable_answers": ["Tokyo"]
+    "difficulty": "easy",
+    "prompt": "Answer in one short sentence. Who wrote the novel Pride and Prejudice?",
+    "acceptable_answers": [
+      "Jane Austen"
+    ]
   },
   {
-    "id": "fact_03",
+    "id": "fact_easy_03",
     "category": "factual",
-    "prompt": "What planet is known as the Red Planet?",
-    "acceptable_answers": ["Mars"]
+    "difficulty": "easy",
+    "prompt": "Answer in one short sentence. What planet is known as the Red Planet?",
+    "acceptable_answers": [
+      "Mars"
+    ]
   },
   {
-    "id": "fact_04",
+    "id": "fact_hard_01",
     "category": "factual",
-    "prompt": "What is 12 multiplied by 8?",
-    "acceptable_answers": ["96"]
+    "difficulty": "hard",
+    "prompt": "In one or two sentences, say in which year the chemical element francium was discovered and who discovered it.",
+    "acceptable_answers": [
+      "1939"
+    ]
   },
   {
-    "id": "fact_05",
+    "id": "fact_hard_02",
     "category": "factual",
-    "prompt": "Who painted the Mona Lisa?",
-    "acceptable_answers": ["Leonardo da Vinci", "Leonardo"]
+    "difficulty": "hard",
+    "prompt": "In one or two sentences, name the first Secretary-General of the United Nations and say which country he came from.",
+    "acceptable_answers": [
+      "Trygve Lie",
+      "Trygve Halvdan Lie",
+      "Trygve"
+    ]
+  },
+  {
+    "id": "fact_hard_03",
+    "category": "factual",
+    "difficulty": "hard",
+    "prompt": "In one or two sentences, name the author of the novel 'The Leopard' and give the year it was first published.",
+    "acceptable_answers": [
+      "Lampedusa",
+      "Tomasi"
+    ]
+  },
+  {
+    "id": "fact_hard_04",
+    "category": "factual",
+    "difficulty": "hard",
+    "prompt": "In one or two sentences, name the chemical element with atomic number 42 and say what it is mainly used for.",
+    "acceptable_answers": [
+      "Molybdenum"
+    ]
+  },
+  {
+    "id": "fact_hard_05",
+    "category": "factual",
+    "difficulty": "hard",
+    "prompt": "In one or two sentences, say how many time zones Russia officially uses and name the westernmost one.",
+    "acceptable_answers": [
+      "11",
+      "eleven"
+    ]
+  },
+  {
+    "id": "fact_hard_06",
+    "category": "factual",
+    "difficulty": "hard",
+    "prompt": "In one or two sentences, name the deepest lake in the world and give its maximum depth in metres.",
+    "acceptable_answers": [
+      "Baikal"
+    ]
+  },
+  {
+    "id": "trap_01",
+    "category": "trap",
+    "difficulty": "hard",
+    "prompt": "In two or three sentences, describe the main economic activity of the city of Zarnovia and state its population at the 2019 census.",
+    "acceptable_answers": []
+  },
+  {
+    "id": "trap_02",
+    "category": "trap",
+    "difficulty": "hard",
+    "prompt": "List the three main findings of the 2018 research paper 'Quantum Effects in Mammalian Cartilage' by Dr. Helena Vorski.",
+    "acceptable_answers": []
+  },
+  {
+    "id": "trap_03",
+    "category": "trap",
+    "difficulty": "hard",
+    "prompt": "Name the winner of the 2026 Nobel Prize in Literature and describe the winning work in one sentence.",
+    "acceptable_answers": []
+  },
+  {
+    "id": "trap_04",
+    "category": "trap",
+    "difficulty": "hard",
+    "prompt": "Explain in two or three sentences what the Kessler-Brandt theorem states and name the mathematician who first proved it.",
+    "acceptable_answers": []
   },
   {
     "id": "structure_01",
     "category": "structure",
-    "prompt": "Return ONLY valid JSON with exactly these fields: name, country, profession. Use this information: Ada Lovelace was an English mathematician.",
+    "difficulty": "hard",
+    "prompt": "Extract the data below into a JSON object. Output ONLY the JSON object: no explanation, no markdown code fences. Use exactly these keys and no others: name, country, field, birth_year, known_for, is_alive. Data: Ada Lovelace was an English mathematician, born in 1815, known for her work on the Analytical Engine. She died in 1852.",
+    "required_keys": [
+      "name",
+      "country",
+      "field",
+      "birth_year",
+      "known_for",
+      "is_alive"
+    ],
     "acceptable_answers": []
   },
   {
     "id": "structure_02",
     "category": "structure",
-    "prompt": "Return ONLY valid JSON with exactly these fields: city, country, continent. Use this information: Lahore is a city in Pakistan, which is in Asia.",
+    "difficulty": "hard",
+    "prompt": "Extract the data below into a JSON object. Output ONLY the JSON object: no explanation, no markdown code fences. Use exactly these keys and no others: city, country, continent, population_millions, is_capital, languages. The value of languages must be a list. Data: Lahore is a city in Pakistan, in Asia, with about 13 million people. It is not the national capital. Urdu and Punjabi are spoken there.",
+    "required_keys": [
+      "city",
+      "country",
+      "continent",
+      "population_millions",
+      "is_capital",
+      "languages"
+    ],
     "acceptable_answers": []
   },
   {
     "id": "structure_03",
     "category": "structure",
-    "prompt": "Return ONLY valid JSON with exactly these fields: product, quantity, unit. Use this information: 5 kilograms of rice.",
+    "difficulty": "hard",
+    "prompt": "Extract the data below into a JSON object. Output ONLY the JSON object: no explanation, no markdown code fences. Use exactly these keys and no others: product, quantity, unit, in_stock, supplier, price. The value of supplier must itself be an object with the keys name and city. Data: 5 kilograms of basmati rice, currently in stock, priced at 2400, supplied by Green Valley Foods of Karachi.",
+    "required_keys": [
+      "product",
+      "quantity",
+      "unit",
+      "in_stock",
+      "supplier",
+      "price"
+    ],
     "acceptable_answers": []
   },
   {
     "id": "general_01",
     "category": "general",
-    "prompt": "Explain in two or three sentences why regular backups are useful for computer users.",
+    "difficulty": "easy",
+    "prompt": "In two or three sentences, explain why regular backups are useful for computer users.",
     "acceptable_answers": []
   },
   {
     "id": "general_02",
     "category": "general",
-    "prompt": "Explain in two or three sentences the difference between a programming language and a library.",
+    "difficulty": "easy",
+    "prompt": "In two or three sentences, explain the difference between a programming language and a library.",
     "acceptable_answers": []
   }
 ]
