@@ -1,0 +1,62 @@
+[
+  {
+    "id": "fact_01",
+    "category": "factual",
+    "prompt": "Who wrote the novel Pride and Prejudice?",
+    "acceptable_answers": ["Jane Austen"]
+  },
+  {
+    "id": "fact_02",
+    "category": "factual",
+    "prompt": "What is the capital city of Japan?",
+    "acceptable_answers": ["Tokyo"]
+  },
+  {
+    "id": "fact_03",
+    "category": "factual",
+    "prompt": "What planet is known as the Red Planet?",
+    "acceptable_answers": ["Mars"]
+  },
+  {
+    "id": "fact_04",
+    "category": "factual",
+    "prompt": "What is 12 multiplied by 8?",
+    "acceptable_answers": ["96"]
+  },
+  {
+    "id": "fact_05",
+    "category": "factual",
+    "prompt": "Who painted the Mona Lisa?",
+    "acceptable_answers": ["Leonardo da Vinci", "Leonardo"]
+  },
+  {
+    "id": "structure_01",
+    "category": "structure",
+    "prompt": "Return ONLY valid JSON with exactly these fields: name, country, profession. Use this information: Ada Lovelace was an English mathematician.",
+    "acceptable_answers": []
+  },
+  {
+    "id": "structure_02",
+    "category": "structure",
+    "prompt": "Return ONLY valid JSON with exactly these fields: city, country, continent. Use this information: Lahore is a city in Pakistan, which is in Asia.",
+    "acceptable_answers": []
+  },
+  {
+    "id": "structure_03",
+    "category": "structure",
+    "prompt": "Return ONLY valid JSON with exactly these fields: product, quantity, unit. Use this information: 5 kilograms of rice.",
+    "acceptable_answers": []
+  },
+  {
+    "id": "general_01",
+    "category": "general",
+    "prompt": "Explain in two or three sentences why regular backups are useful for computer users.",
+    "acceptable_answers": []
+  },
+  {
+    "id": "general_02",
+    "category": "general",
+    "prompt": "Explain in two or three sentences the difference between a programming language and a library.",
+    "acceptable_answers": []
+  }
+]
