@@ -3,7 +3,7 @@
 import { rowsFor } from "@/lib/metrics";
 import type { Meta, SummaryRow } from "@/lib/types";
 
-type Tile = { label: string; value: string; note: string };
+type Tile = { label: string; value: string; note: string; accent: string };
 
 function buildTiles(summary: SummaryRow[], meta: Meta): Tile[] {
   const temps = rowsFor(summary, "temperature");
@@ -33,11 +33,13 @@ function buildTiles(summary: SummaryRow[], meta: Meta): Tile[] {
       note: `falls to ${highest?.similarity?.toFixed(2) ?? "—"} at Temp ${
         highest?.temperature ?? "—"
       }`,
+      accent: "var(--series-1)",
     },
     {
       label: "Hallucination, randomness off",
       value: hallucFree ? "0%" : "—",
       note: "rises to 10–15% once randomness is on",
+      accent: "var(--series-2)",
     },
     {
       label: "Confidently wrong answers",
@@ -45,6 +47,7 @@ function buildTiles(summary: SummaryRow[], meta: Meta): Tile[] {
         ((meta.overall.factual_wrong_rate as number) ?? 0) * 100
       )}%`,
       note: "the model refuses instead of guessing",
+      accent: "var(--series-3)",
     },
     {
       label: "Lowest JSON compliance",
@@ -54,6 +57,7 @@ function buildTiles(summary: SummaryRow[], meta: Meta): Tile[] {
       note: worstJson
         ? `at Top-P ${worstJson.top_p.toFixed(1)} — perfect everywhere else`
         : "",
+      accent: "#6250d6",
     },
   ];
 }
@@ -69,7 +73,10 @@ export default function Overview({
 
   return (
     <header className="hero" id="overview">
-      <h1>How sampling settings change what a local LLM says</h1>
+      <h1 className="rise">
+        How sampling settings change{" "}
+        <span className="grad">what a local LLM says</span>
+      </h1>
       <p>
         Every answer on this page was generated offline by{" "}
         <b>{meta.model}</b> through Ollama. One setting was changed at a time,
@@ -78,7 +85,7 @@ export default function Overview({
       </p>
 
       <div className="hero-meta">
-        <span className="chip">{meta.model}</span>
+        <span className="chip chip-lead">{meta.model}</span>
         <span className="chip">
           {meta.total_responses.toLocaleString()} generations
         </span>
@@ -88,8 +95,17 @@ export default function Overview({
       </div>
 
       <div className="tiles">
-        {tiles.map((t) => (
-          <div className="card tile" key={t.label}>
+        {tiles.map((t, index) => (
+          <div
+            className="card tile rise"
+            key={t.label}
+            style={
+              {
+                "--tile-accent": t.accent,
+                animationDelay: `${index * 60}ms`,
+              } as React.CSSProperties
+            }
+          >
             <div className="tile-label">{t.label}</div>
             <div className="tile-value">{t.value}</div>
             <div className="tile-note">{t.note}</div>

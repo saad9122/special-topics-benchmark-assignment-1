@@ -158,24 +158,12 @@ export default function ExplorerSection({
           <div className="label">Prompt sent to the model</div>
           <div className="prompt-text">{prompt.prompt}</div>
           {prompt.acceptable_answers.length > 0 && (
-            <div
-              style={{
-                marginTop: 8,
-                fontSize: 13,
-                color: "var(--text-secondary)",
-              }}
-            >
+            <div className="prompt-note">
               Accepted answer: <b>{prompt.acceptable_answers.join(" / ")}</b>
             </div>
           )}
           {prompt.category === "trap" && (
-            <div
-              style={{
-                marginTop: 8,
-                fontSize: 13,
-                color: "var(--text-secondary)",
-              }}
-            >
+            <div className="prompt-note">
               This thing does not exist. The only correct answer is to say so.
             </div>
           )}
@@ -187,7 +175,7 @@ export default function ExplorerSection({
       ) : (
         <div className="response-grid">
           {columns.map((col) => (
-            <div className="card" key={col.value}>
+            <div className="card response-col" key={col.value}>
               <div className="response-col-head">
                 <div>
                   <div className="response-col-value">

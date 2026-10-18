@@ -166,6 +166,7 @@ export default function EffectsSection({ summary }: { summary: SummaryRow[] }) {
               points={points}
               metric={metric}
               color={SERIES_COLOR[exp.key]}
+              gradientId={`fill-${exp.key}`}
             />
           ))}
         </div>
